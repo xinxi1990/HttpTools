@@ -1,0 +1,17 @@
+- info:
+    name: "百度首页"
+  given:
+    queryParam:
+    headers:
+    request: "get"
+  when:
+    url: "https://www.baidu.com"
+  then:
+    statusCode: 200
+
+
+
+
+
+
+

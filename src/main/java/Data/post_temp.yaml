@@ -9,13 +9,13 @@
       Content-Type: "application/json"
     request: "post"
   when:
-    request: "post"
     url: "https://m.igetget.com/hybrid/api/v1/ebook/detail"
   then:
     statusCode: 200
     body:
-     errCode: 0
-     errMsg: ""
+     - eq : ["errCode", "0"]
+
+
 
 
 
