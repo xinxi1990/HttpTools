@@ -16,6 +16,58 @@
      - eq : ["errCode", "0"]
 
 
+- info:
+    name: "包管理管理更新接口"
+  given:
+    body:
+      appId: 5af43a6156f872002beb97e9
+      channelId: 5af50cd78654cb002c1fc3f1
+      containerVersion: 5.0.4
+      packageType: patch
+      packageVersion: 1.0.0
+    headers:
+      Content-Type: "application/json"
+    request: "post"
+  when:
+    url: "https://seeder.igetget.com/api/package/update"
+  then:
+    statusCode: 200
+    body:
+    - eq : ["errCode", "0"]
+
+- info:
+    name: "新书单列表"
+  given:
+    body:
+        userInfo:
+          uid: "223220861"
+        maxId: 0
+        count: 20
+    headers:
+      Content-Type: "application/json"
+    request: "post"
+  when:
+    url: "https://m.igetget.com/hybrid/api/ebook/new_list"
+  then:
+    statusCode: 200
+    body:
+    - eq : ["errCode", "0"]
+
+#- info:
+#    name: "A"
+#  given:
+#    body:
+#      keys: "new_friends_cnt"
+#    headers:
+#      Content-Type: "application/x-www-form-urlencoded"
+#      Cookie: "acw_tc=3ccdc16815396967923214419e1ca68912649234f714e3dca19d91bbcd4e35; aliyungf_tc=AQAAAMEB4TcSkwMABZdldQoqI5CzPrZ2"
+#    request: "post"
+#  when:
+#    url: "https://entree.igetget.com/ledgers/count/get_unread"
+#  then:
+#    statusCode: 200
+#    body:
+#    - eq : ["errCode", "0"]
 
 
 

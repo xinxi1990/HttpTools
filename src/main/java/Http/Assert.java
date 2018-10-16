@@ -1,9 +1,6 @@
 package Http;
 
-import org.hamcrest.Matchers;
-import org.junit.Rule;
 import org.junit.rules.ErrorCollector;
-
 import static org.hamcrest.Matchers.*;
 
 /***

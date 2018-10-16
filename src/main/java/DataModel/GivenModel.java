@@ -1,5 +1,9 @@
 package DataModel;
 
+/**
+ * Given模型类
+ */
+
 
 public class GivenModel {
     public  String request;
