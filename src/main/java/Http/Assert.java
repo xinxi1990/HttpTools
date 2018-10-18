@@ -14,6 +14,7 @@ public class Assert {
 
     public Assert(ErrorCollector collector) {
         this.collector = collector;
+
     }
 
     public  void assertEqual(Object check,Object expect){

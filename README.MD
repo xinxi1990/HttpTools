@@ -26,4 +26,8 @@ https://testerhome.com/topics/6672
 ```
 
 
+# 问题
+```
+io.restassured.path.json.exception.JsonPathException: Failed to parse the JSON document
 
+```
