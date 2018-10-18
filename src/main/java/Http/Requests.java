@@ -1,7 +1,6 @@
 package Http;
 
-import DataModel.StepModel;
-import DataModel.ThenModel;
+import Model.StepModel;
 import io.restassured.builder.ResponseBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.filter.Filter;
@@ -48,6 +47,49 @@ public class Requests {
     public String ContentTypeFrom = "application/x-www-form-urlencoded";
     public static ResponseSpecBuilder rb= new ResponseSpecBuilder();
     public static ResponseSpecification rs;
+    private static String FILEPATH;
+    private static boolean NEEDHELP = false;
+
+
+    public static void main(String[] args) throws Exception {
+        executeParameter(args);
+    }
+
+    /**
+     * 执行参数
+     * @param args
+     * @throws Exception
+     */
+    private static void executeParameter(String[] args) throws Exception {
+        int optSetting = 0;
+
+        for (; optSetting < args.length; optSetting++) {
+            if ("-f".equals(args[optSetting])) {
+                FILEPATH = args[++optSetting];
+            }else if ("-h".equals(args[optSetting])) {
+                NEEDHELP = true;
+                log_info("-f:测试用例路径\n");
+                break;
+            }
+
+        }
+        if (!NEEDHELP) {
+            try {
+                log_info("-f:测试用例路径\n");
+            } catch (Exception e) {
+                log_info("请确认参数配置,需要帮助请输入 java -jar HttpTools.jar -h\n"
+                        + "ERROR信息"+ e.toString());
+            }
+            try {
+                new Requests().run(FILEPATH);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+
 
     /**
      * @param filePath
@@ -71,8 +113,6 @@ public class Requests {
     }
 
 
-
-
     public static void responseFilters(){
         filters((new Filter() {
                     public Response filter(FilterableRequestSpecification requestSpec, FilterableResponseSpecification responseSpec, FilterContext ctx) {
@@ -89,11 +129,10 @@ public class Requests {
     }
 
 
-
     @BeforeClass
     public static void beforeClass() throws IOException {
         initLogger().setLevel(Level.ALL);
-        String yamlPath = System.getProperty("user.dir") + "/src/main/java/Data/post_temp.yaml";
+        String yamlPath = System.getProperty("user.dir") + "/src/main/java/Case/get_temp.yaml";
         testcase = load(yamlPath);
         RestAssured.useRelaxedHTTPSValidation();
         responseFilters();
@@ -102,29 +141,29 @@ public class Requests {
 
 
 
-
-
-
-
-    @Test
-    public void run(){
+    public void run(String CasePath) throws IOException {
+        initLogger().setLevel(Level.ALL);
+        testcase = load(CasePath);
+        RestAssured.useRelaxedHTTPSValidation();
+        responseFilters();
         for( StepModel step: testcase){
-            log_info(step.info.name);
+            log_info("接口名称:" + step.info.name);
             if(step.given.request.equals("get")) {
                 Map queryParam = (Map) step.given.queryParam;
                 Map headers = (Map) step.given.headers;
                 if (step.given.queryParam == null && step.given.headers == null){
                     response = (Response) given().when().log().all().get(step.when.url).then().extract();
                 }else if (step.given.queryParam == null){
-                    response = (Response) given().headers(headers).when().log().all().get(step.when.url).then().extract();
+                    response = (Response) given().headers(headers).when().
+                            log().all().get(step.when.url).then().extract();
                 }else {
-                    response = (Response) given().headers(headers).params(queryParam).when().log().all().get(step.when.url).then().extract();
+                    response = (Response) given().headers(headers).
+                            params(queryParam).when().log().all().get(step.when.url).then().extract();
                 }
             }else if (step.given.request.equals("post")){
                 Map body = (Map) step.given.body;
                 Map headers = (Map) step.given.headers;
                 String ContentType = (String) headers.get("Content-Type");
-                System.out.println(ContentType);
                 if (ContentType.equals(ContentTypeFrom)){
                     response = (Response) given().headers(headers)
                             .formParams(body).when().log().all()
@@ -141,8 +180,7 @@ public class Requests {
     }
 
 
-
-    public void getResponse(Response response, StepModel step){
+    private void getResponse(Response response, StepModel step){
         selectAssert("eq",response.statusCode(),step.then.statusCode);
         log_info("断言接口状态码");
         List getBody = (List) step.then.body;

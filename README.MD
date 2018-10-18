@@ -7,6 +7,10 @@ https://cn.httprunner.org/concept/testcase-structure/
 # 源码使用
 
 # jar包使用
+```$xslt
+java -jar HttpTools-1.0-SNAPSHOT.jar 
+-f /Users/xinxi/Documents/ideaProjcet/HttpTools/src/main/java/Case/get_temp.yaml
+```
 
 # 模版格式
 

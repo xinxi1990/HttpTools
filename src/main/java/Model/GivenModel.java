@@ -1,4 +1,4 @@
-package DataModel;
+package Model;
 
 /**
  * Given模型类

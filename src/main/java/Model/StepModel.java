@@ -1,4 +1,4 @@
-package DataModel;
+package Model;
 
 
 public class StepModel {

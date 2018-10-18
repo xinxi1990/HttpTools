@@ -1,0 +1,75 @@
+2018-10-17 10:37:51 [ INFO] - HttpTools  -电子书详情页
+2018-10-17 10:37:53 [ INFO] - HttpTools  -response filter
+2018-10-17 10:37:53 [ INFO] - HttpTools  -断言接口状态码
+2018-10-17 10:37:53 [ INFO] - HttpTools  -断言类型:eq
+2018-10-17 10:37:53 [ INFO] - HttpTools  -断言数据列表:["errCode","0"]
+2018-10-17 10:37:53 [ INFO] - HttpTools  -响应解析的值:0
+2018-10-17 10:37:53 [ INFO] - HttpTools  -包管理管理更新接口
+2018-10-17 10:37:53 [ INFO] - HttpTools  -response filter
+2018-10-17 10:37:53 [ INFO] - HttpTools  -断言接口状态码
+2018-10-17 10:37:53 [ INFO] - HttpTools  -断言类型:eq
+2018-10-17 10:37:53 [ INFO] - HttpTools  -断言数据列表:["errCode","0"]
+2018-10-17 10:37:53 [ INFO] - HttpTools  -响应解析的值:0
+2018-10-17 10:37:53 [ INFO] - HttpTools  -新书单列表
+2018-10-17 10:37:54 [ INFO] - HttpTools  -response filter
+2018-10-17 10:37:54 [ INFO] - HttpTools  -断言接口状态码
+2018-10-17 10:37:54 [ INFO] - HttpTools  -断言类型:eq
+2018-10-17 10:37:54 [ INFO] - HttpTools  -断言数据列表:["errCode","0"]
+2018-10-17 10:37:54 [ INFO] - HttpTools  -响应解析的值:0
+2018-10-17 10:44:21 [ INFO] - HttpTools  -金币商城
+2018-10-17 10:44:24 [ INFO] - HttpTools  -response filter
+2018-10-17 10:44:24 [ INFO] - HttpTools  -断言接口状态码
+2018-10-17 10:44:24 [ INFO] - HttpTools  -断言类型:eq
+2018-10-17 10:44:24 [ INFO] - HttpTools  -断言数据列表:["message","success"]
+2018-10-17 10:44:24 [ INFO] - HttpTools  -响应解析的值:success
+2018-10-17 10:44:24 [ INFO] - HttpTools  -新闻
+2018-10-17 10:44:25 [ INFO] - HttpTools  -response filter
+2018-10-17 10:44:25 [ INFO] - HttpTools  -断言接口状态码
+2018-10-17 10:44:25 [ INFO] - HttpTools  -断言类型:eq
+2018-10-17 10:44:25 [ INFO] - HttpTools  -断言数据列表:["code","200"]
+2018-10-17 10:44:25 [ INFO] - HttpTools  -响应解析的值:200
+2018-10-17 10:44:54 [ INFO] - HttpTools  -金币商城
+2018-10-17 10:44:57 [ INFO] - HttpTools  -response filter
+2018-10-17 10:44:57 [ INFO] - HttpTools  -断言接口状态码
+2018-10-17 10:44:57 [ INFO] - HttpTools  -断言类型:eq
+2018-10-17 10:44:57 [ INFO] - HttpTools  -断言数据列表:["message","success"]
+2018-10-17 10:44:57 [ INFO] - HttpTools  -响应解析的值:success
+2018-10-17 10:44:57 [ INFO] - HttpTools  -新闻
+2018-10-17 10:44:58 [ INFO] - HttpTools  -response filter
+2018-10-17 10:44:58 [ INFO] - HttpTools  -断言接口状态码
+2018-10-17 10:44:58 [ INFO] - HttpTools  -断言类型:eq
+2018-10-17 10:44:58 [ INFO] - HttpTools  -断言数据列表:["code","200"]
+2018-10-17 10:44:58 [ INFO] - HttpTools  -响应解析的值:200
+2018-10-17 10:44:58 [ INFO] - HttpTools  -断言类型:eq
+2018-10-17 10:44:58 [ INFO] - HttpTools  -断言数据列表:["code","200"]
+2018-10-17 10:44:58 [ INFO] - HttpTools  -响应解析的值:200
+2018-10-17 10:46:15 [ INFO] - HttpTools  -金币商城
+2018-10-17 10:46:19 [ INFO] - HttpTools  -response filter
+2018-10-17 10:46:19 [ INFO] - HttpTools  -断言接口状态码
+2018-10-17 10:46:19 [ INFO] - HttpTools  -断言类型:eq
+2018-10-17 10:46:19 [ INFO] - HttpTools  -断言数据列表:["message","success"]
+2018-10-17 10:46:20 [ INFO] - HttpTools  -响应解析的值:success
+2018-10-17 10:46:20 [ INFO] - HttpTools  -新闻
+2018-10-17 10:46:20 [ INFO] - HttpTools  -response filter
+2018-10-17 10:46:20 [ INFO] - HttpTools  -断言接口状态码
+2018-10-17 10:46:20 [ INFO] - HttpTools  -断言类型:eq
+2018-10-17 10:46:20 [ INFO] - HttpTools  -断言数据列表:["code","200"]
+2018-10-17 10:46:20 [ INFO] - HttpTools  -响应解析的值:200
+2018-10-17 10:46:20 [ INFO] - HttpTools  -断言类型:eq
+2018-10-17 10:46:20 [ INFO] - HttpTools  -断言数据列表:["data.size()","200"]
+2018-10-17 10:46:20 [ INFO] - HttpTools  -响应解析的值:8
+2018-10-17 10:46:46 [ INFO] - HttpTools  -金币商城
+2018-10-17 10:46:50 [ INFO] - HttpTools  -response filter
+2018-10-17 10:46:50 [ INFO] - HttpTools  -断言接口状态码
+2018-10-17 10:46:50 [ INFO] - HttpTools  -断言类型:eq
+2018-10-17 10:46:50 [ INFO] - HttpTools  -断言数据列表:["message","success"]
+2018-10-17 10:46:51 [ INFO] - HttpTools  -响应解析的值:success
+2018-10-17 10:46:51 [ INFO] - HttpTools  -新闻
+2018-10-17 10:46:51 [ INFO] - HttpTools  -response filter
+2018-10-17 10:46:51 [ INFO] - HttpTools  -断言接口状态码
+2018-10-17 10:46:51 [ INFO] - HttpTools  -断言类型:eq
+2018-10-17 10:46:51 [ INFO] - HttpTools  -断言数据列表:["code","200"]
+2018-10-17 10:46:51 [ INFO] - HttpTools  -响应解析的值:200
+2018-10-17 10:46:51 [ INFO] - HttpTools  -断言类型:eq
+2018-10-17 10:46:51 [ INFO] - HttpTools  -断言数据列表:["data.size()","8"]
+2018-10-17 10:46:51 [ INFO] - HttpTools  -响应解析的值:8

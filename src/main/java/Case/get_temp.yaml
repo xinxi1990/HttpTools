@@ -1,0 +1,102 @@
+- info:
+    name: "查询快递"
+  given:
+    queryParam:
+      type: "shentong"
+      postid: "111111"
+    headers:
+      Accept: "*/*"
+    request: "get"
+  when:
+    url: "http://www.kuaidi100.com/query"
+  then:
+    statusCode: 200
+    body:
+    - eq : ["message", "ok"]
+
+- info:
+    name: "用户中心"
+  given:
+    queryParam:
+    headers:
+      Accept: "*/*"
+    request: "get"
+  when:
+    url: "https://app.58.com/api/sub/ucenter/subreddot"
+  then:
+    statusCode: 200
+    body:
+    - eq : ["hasnew", "false"]
+
+- info:
+    name: "获取天气"
+  given:
+    queryParam:
+      cityname: "bj"
+    headers:
+      Accept: "*/*"
+    request: "get"
+  when:
+    url: "https://platform.58.com/indexweather/indexdata"
+  then:
+    statusCode: 200
+    body:
+    - eq : ["infocode", "000000"]
+
+
+- info:
+    name: "金币商城"
+  given:
+    queryParam:
+    headers:
+      Accept: "*/*"
+    request: "get"
+  when:
+    url: "https://pmall.58.com/userCenter/getInfo"
+  then:
+    statusCode: 200
+    body:
+    - eq : ["message", "success"]
+
+
+- info:
+    name: "新闻"
+  given:
+    queryParam:
+    headers:
+      Accept: "*/*"
+    request: "get"
+  when:
+    url: "https://www.apiopen.top/journalismApi"
+  then:
+    statusCode: 200
+    body:
+    - eq : ["code", "200"]
+    - eq : ["data.size()", "8"]
+
+
+- info:
+    name: "app首页"
+  given:
+    queryParam:
+      cversion: "8.11.1"
+      os: "ios"
+      city: "bj"
+      indexver: "1539828940778"
+      trigger_type: "0"
+    headers:
+      Accept: "*/*"
+    request: "get"
+  when:
+    url: "http://app.58.com/api/home/app/getindexinfo/"
+  then:
+    statusCode: 200
+    body:
+    - eq : ["code", "200"]
+    - eq : ["data.size()", "8"]
+
+
+
+
+
+
