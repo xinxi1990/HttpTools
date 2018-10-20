@@ -14,14 +14,14 @@ public class ExtentUtils extends TestWatcher {
     private ExtentReports extent;
     private ExtentTest test;
 
-    public ExtentUtils(ExtentReports extent) {
+    public ExtentUtils(ExtentReports extent,ExtentTest test) {
         this.extent = extent;
         this.test = test;
     }
 
     @Override
     protected void succeeded(Description description) {
-        ExtentTest test = extent.startTest(description.getDisplayName(), "-");
+        //ExtentTest test = extent.startTest(description.getDisplayName(), "-");
         // step log
         test.log(LogStatus.PASS, "-");
         flushReports(extent, test);
@@ -29,7 +29,7 @@ public class ExtentUtils extends TestWatcher {
 
     @Override
     protected void failed(Throwable e, Description description) {
-        ExtentTest test = extent.startTest(description.getDisplayName(), "Test failed");
+        //ExtentTest test = extent.startTest(description.getDisplayName(), "Test failed");
         // step log
         test.log(LogStatus.INFO, "-");
         test.log(LogStatus.FAIL, e);

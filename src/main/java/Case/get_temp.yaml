@@ -96,23 +96,6 @@
     - eq : ["data.size()", "8"]
 
 
-- info:
-    name: "获取token"
-  given:
-    queryParam:
-      corpid: "wwe4986dc207057960"
-      corpsecret: "A36IHHzaGUoqDyPGDL5lXOED6Wxo1qt3MMI-SAeQ5AQ"
-    headers:
-      Accept: "*/*"
-    request: "get"
-  when:
-    url: "https://qyapi.weixin.qq.com/cgi-bin/gettoken"
-  then:
-    statusCode: 200
-    body:
-    - eq : ["errcode", "0"]
-
-
 
 
 

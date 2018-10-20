@@ -58,9 +58,10 @@ public class Requests {
     private static String reportPath = String.format( System.getProperty("REPORTPATH")
             + "/reports/report_%s.html", timeDate());
     public static MyLogger logger;
+    public static ExtentTest extentTest;
 
     @Rule
-    public ExtentUtils eu = new ExtentUtils(extent);
+    public ExtentUtils eu = new ExtentUtils(extent,extentTest);
 
     /**
      * @param filePath
@@ -83,7 +84,7 @@ public class Requests {
         CASEPATH = System.getProperty("FILEPATH");
         testcase = load(CASEPATH);
         extent = new ExtentReports(reportPath, true, NetworkMode.OFFLINE);
-        ExtentTest extentTest = extent.startTest("test", "-");
+        extentTest = extent.startTest("test", "-");
         logger = new MyLogger(extent,extentTest);
         logger.log_info("初始化全局参数");
         rb.expectResponseTime(lessThan(1000L));
