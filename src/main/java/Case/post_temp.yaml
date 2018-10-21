@@ -53,21 +53,21 @@
     body:
     - eq : ["errCode", "0"]
 
-#- info:
-#    name: "A"
-#  given:
-#    body:
-#      keys: "new_friends_cnt"
-#    headers:
-#      Content-Type: "application/x-www-form-urlencoded"
-#      Cookie: "acw_tc=3ccdc16815396967923214419e1ca68912649234f714e3dca19d91bbcd4e35; aliyungf_tc=AQAAAMEB4TcSkwMABZdldQoqI5CzPrZ2"
-#    request: "post"
-#  when:
-#    url: "https://entree.igetget.com/ledgers/count/get_unread"
-#  then:
-#    statusCode: 200
-#    body:
-#    - eq : ["errCode", "0"]
+- info:
+    name: "A"
+  given:
+    body:
+      keys: "new_friends_cnt"
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+      Cookie: "acw_tc=3ccdc16815396967923214419e1ca68912649234f714e3dca19d91bbcd4e35; aliyungf_tc=AQAAAMEB4TcSkwMABZdldQoqI5CzPrZ2"
+    request: "post"
+  when:
+    url: "https://entree.igetget.com/ledgers/count/get_unread"
+  then:
+    statusCode: 200
+    body:
+    - eq : ["errCode", "0"]
 
 
 

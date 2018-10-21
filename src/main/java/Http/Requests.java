@@ -17,6 +17,7 @@ import io.restassured.specification.FilterableResponseSpecification;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import org.apache.log4j.Level;
+import org.hamcrest.Matchers;
 import org.junit.Rule;
 import org.junit.Test;
 import net.sf.json.JSONArray;
@@ -31,6 +32,7 @@ import io.restassured.response.Response;
 import static Tools.MyLogger.initLogger;
 import static io.restassured.RestAssured.filters;
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.lessThan;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -59,6 +61,7 @@ public class Requests {
             + "/reports/report_%s.html", timeDate());
     public static MyLogger logger;
     public static ExtentTest extentTest;
+
 
     @Rule
     public ExtentUtils eu = new ExtentUtils(extent,extentTest);
@@ -150,8 +153,8 @@ public class Requests {
 
 
     private void getResponse(Response response, StepModel step){
-        selectAssert("eq",response.statusCode(),step.then.statusCode);
-        logger.log_info("断言接口状态码");
+        org.junit.Assert.assertEquals(response.statusCode(),step.then.statusCode);
+        logger.log_info("断言接口状态码成功!");
         List getBody = (List) step.then.body;
         for (Object bd:getBody) {
             JSONObject object = JSONObject.fromObject(bd);
@@ -168,6 +171,7 @@ public class Requests {
                 selectAssert(selectkey,check,exp);
             }
         }
+
     }
 
 
