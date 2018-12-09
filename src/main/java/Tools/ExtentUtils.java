@@ -29,7 +29,7 @@ public class ExtentUtils extends TestWatcher {
 
     @Override
     protected void failed(Throwable e, Description description) {
-        //ExtentTest test = extent.startTest(description.getDisplayName(), "Test failed");
+        //ExtentTest test = extent.startTest(description.getDisplayName(), "FibonacciTest failed");
         // step log
         test.log(LogStatus.INFO, "-");
         test.log(LogStatus.FAIL, e);

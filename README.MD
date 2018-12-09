@@ -4,6 +4,14 @@
 # 用例组织
 https://cn.httprunner.org/concept/testcase-structure/
 
+# 更新
+```
+1.支持debug模式调试
+2.支持测试用例文件夹参数
+3.增加输入请求和响应日志
+```
+
+
 # jar包使用
 ```$xslt
 把该工具打包成jar包,jar包在target目录下
@@ -11,7 +19,7 @@ https://cn.httprunner.org/concept/testcase-structure/
 打包命令:mvn package
 
 java -jar HttpTools-1.0-SNAPSHOT.jar 
--f /Users/xinxi/get_temp.yaml 测试用例路径
+-f /Users/xinxi/get_temp.yaml 测试用例路径 或者 /Users/xinxi/ 测试用例文件夹
 -r /Users/xinxi/Desktop 保存的文件目录
 -v ALL 日志等级
 ```

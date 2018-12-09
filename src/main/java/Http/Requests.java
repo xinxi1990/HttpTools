@@ -11,6 +11,8 @@ import io.restassured.builder.ResponseBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.filter.Filter;
 import io.restassured.filter.FilterContext;
+import io.restassured.filter.log.RequestLoggingFilter;
+import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.ContentType;
 import io.restassured.specification.FilterableRequestSpecification;
 import io.restassured.specification.FilterableResponseSpecification;
@@ -18,11 +20,13 @@ import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import org.apache.log4j.Level;
 import org.hamcrest.Matchers;
+import org.junit.AfterClass;
 import org.junit.Rule;
 import org.junit.Test;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.junit.BeforeClass;
+import java.io.PrintStream;
 import java.util.*;
 import java.io.File;
 import java.io.IOException;
@@ -37,8 +41,12 @@ import static org.hamcrest.Matchers.lessThan;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 import static Tools.DataUntils.timeDate;
 
+
+@RunWith(Parameterized.class)
 public class Requests {
 
     @Rule
@@ -54,14 +62,46 @@ public class Requests {
     public static RequestSpecBuilder rsb = new RequestSpecBuilder();
     public static ResponseSpecBuilder rb= new ResponseSpecBuilder();
     public static ResponseSpecification rs;
-    public  static String CASEPATH;
     public  static String  LEVEL = "ALL";
     private static ExtentReports extent;
     private static String reportPath = String.format( System.getProperty("REPORTPATH")
             + "/reports/report_%s.html", timeDate());
     public static MyLogger logger;
     public static ExtentTest extentTest;
+    public static File[] files;
 
+    @Parameterized.Parameter
+    public  static String CASEPATH;
+
+    public static List<String> getCaseFolder(String casefolder){
+        List<String> caselist = new ArrayList<String>();
+        File file = new File(casefolder);
+        if (file.exists()) {
+            if (file.isDirectory()) {
+                files = file.listFiles();
+                for (int i = 0; i < files.length; i++) {
+                    caselist.add(String.valueOf(files[i]));
+                }
+            } else {
+                caselist.add(casefolder);
+            }
+        } else {
+            System.out.println(String.format("不存在文件夹:", casefolder));
+        }
+        return caselist;
+    }
+
+
+
+    @Parameterized.Parameters
+    public static Collection prepareData()
+    {
+        CASEPATH = System.getProperty("FILEPATH");
+        List<String> caseFolder = getCaseFolder(CASEPATH);
+        Object[] objects = (Object[])caseFolder.toArray();
+        // 测试数据
+        return Arrays.asList(objects);// 将数组转换成集合返回
+    }
 
     @Rule
     public ExtentUtils eu = new ExtentUtils(extent,extentTest);
@@ -72,7 +112,6 @@ public class Requests {
      * @throws IOException
      */
     public static List<StepModel> load(String filePath) throws IOException {
-        System.out.println(filePath);
         ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
         List<StepModel> data = mapper.readValue(
                 new File(filePath),
@@ -84,14 +123,15 @@ public class Requests {
 
     @BeforeClass
     public static void setup() throws IOException {
-        CASEPATH = System.getProperty("FILEPATH");
-        testcase = load(CASEPATH);
         extent = new ExtentReports(reportPath, true, NetworkMode.OFFLINE);
-        extentTest = extent.startTest("test", "-");
+        extentTest = extent.startTest("接口测试", "-");
         logger = new MyLogger(extent,extentTest);
         logger.log_info("初始化全局参数");
         rb.expectResponseTime(lessThan(1000L));
         rs = rb.build();
+        //PrintStream ps = new PrintStream(new File("run.log"));
+        //RestAssured.filters(new RequestLoggingFilter(ps),new ResponseLoggingFilter(ps));
+        RestAssured.filters(new RequestLoggingFilter(),new ResponseLoggingFilter());
         initLogger().setLevel(Level.ALL);
         RestAssured.useRelaxedHTTPSValidation();
         responseFilters();
@@ -116,11 +156,9 @@ public class Requests {
     }
 
 
-
-
-
     @Test
-    public void run(){
+    public void run() throws IOException {
+        testcase = load(CASEPATH);
         logger.log_info("开始测试!");
         for( StepModel step: testcase){
             logger.log_info("接口名称:" + step.info.name);
@@ -173,6 +211,12 @@ public class Requests {
         }
 
     }
+
+    @AfterClass
+    public static void teardown() throws IOException {
+    }
+
+
 
 
     /**

@@ -3,19 +3,41 @@ package Http;
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Request;
 
+
 public class Run {
 
     private static String FILEPATH;
     private static String REPORTPATH;
     private  static String  LEVEL;
     private static boolean NEEDHELP = false;
+    private static boolean DEBUG = false;
 
 
 
     public static void main(String[] args) throws Exception {
-        executeParameter(args);
+        if (DEBUG){
+            debugRun();
+        }else {
+           executeParameter(args);
+        }
+
     }
 
+
+    /**
+     * 源码运行
+     * @throws Exception
+     */
+    private static void debugRun(){
+        String rootPath = System.getProperty("user.dir");
+        FILEPATH = rootPath + "/src/main/java/Case";
+        REPORTPATH = rootPath + "/src/main/java/Report";
+        System.setProperty("FILEPATH",FILEPATH);
+        System.setProperty("REPORTPATH",REPORTPATH);
+        System.out.println("debugRun");
+        new JUnitCore().run(Request.classes(Requests.class));
+
+    }
 
 
     /**
@@ -23,7 +45,7 @@ public class Run {
      * @param args
      * @throws Exception
      */
-    private static void executeParameter(String[] args) throws Exception {
+    private static void executeParameter(String[] args){
         int optSetting = 0;
         for (; optSetting < args.length; optSetting++) {
             if ("-f".equals(args[optSetting])) {
@@ -42,7 +64,7 @@ public class Run {
         }
         System.setProperty("FILEPATH",FILEPATH);
         System.setProperty("REPORTPATH",REPORTPATH);
-        new JUnitCore().run(Request.method(Requests.class, "run"));
+        new JUnitCore().run(Request.classes(Requests.class));
     }
 
 }
